@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class TestTaskApp {
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static TicketService ticketService = new TicketServiceImpl();
+    private static final TicketService ticketService = new TicketServiceImpl();
 
     public static void main(String[] args) {
         TicketListDto tickets;
@@ -17,7 +17,7 @@ public class TestTaskApp {
             throw new RuntimeException(e);
         }
         ticketService.saveAll(tickets);
-//        ticketService.getMinTimeBetween("VVO", "TLV");
-//        ticketService.getDiffAverageMediumPriceBetween("VVO", "TLV");
+        System.out.println(ticketService.getMinTimeBetween("VVO", "TLV"));
+        System.out.println(ticketService.getDiffAverageMediumPriceBetween("VVO", "TLV"));
     }
 }
