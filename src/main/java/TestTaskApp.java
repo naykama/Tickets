@@ -16,8 +16,7 @@ public class TestTaskApp {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(tickets);
-//        ticketService.save(tickets);
+        ticketService.saveAll(tickets);
 //        ticketService.getMinTimeBetween("VVO", "TLV");
 //        ticketService.getDiffAverageMediumPriceBetween("VVO", "TLV");
     }
