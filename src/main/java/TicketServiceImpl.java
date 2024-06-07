@@ -52,7 +52,7 @@ public class TicketServiceImpl implements TicketService {
          priceList.sort(Integer::compare);
          return priceList.size() == 1 ? priceList.get(0)
                  : priceList.size() % 2 == 0
-                    ? (double) (priceList.get(priceList.size() / 2) + priceList.get(priceList.size() / 2) - 1) / 2
+                    ? (double) (priceList.get(priceList.size() / 2) + priceList.get(priceList.size() / 2 - 1)) / 2
                     :  priceList.get(priceList.size() / 2);
     }
 
