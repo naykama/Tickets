@@ -21,7 +21,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public Map<String, Long> getMinTimeBetween(String originCode, String destinationCode) {
         List<Ticket> tickets = repository.findByPlace(originCode, destinationCode)
-                .orElseThrow(() -> new NotFoundException(String.format("Tickets for route from %s to %s not found",
+                .orElseThrow(() -> new NotFoundException(String.format("Tickets for flight from %s to %s not found",
                         originCode, destinationCode)));
         Map<String, Long> minTimeForCarrier = new HashMap<>();
         for (Ticket ticket : tickets) {
@@ -37,7 +37,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public double getDiffAverageMediumPriceBetween(String originCode, String destinationCode) {
         List<Integer> ticketPriceList = repository.findByPlace(originCode, destinationCode)
-                .orElseThrow(() -> new NotFoundException(String.format("Tickets for route from %s to %s not found",
+                .orElseThrow(() -> new NotFoundException(String.format("Tickets for flight from %s to %s not found",
                 originCode, destinationCode))).stream()
                 .map(Ticket::getPrice)
                 .collect(Collectors.toList());
@@ -45,15 +45,15 @@ public class TicketServiceImpl implements TicketService {
     }
 
     private double getAverage(List<Integer> priceList) {
-        System.out.println("Average: " + priceList.stream().mapToDouble(Integer::doubleValue).average().getAsDouble());
         return priceList.stream().mapToDouble(Integer::doubleValue).average().getAsDouble();
     }
 
     private double getMedium(List<Integer> priceList) {
          priceList.sort(Integer::compare);
-         System.out.println("medium: " + priceList);
-         System.out.println("medium getting: " + priceList.get(priceList.size() / 2));
-         return priceList.get(priceList.size() / 2);
+         return priceList.size() == 1 ? priceList.get(0)
+                 : priceList.size() % 2 == 0
+                    ? (double) (priceList.get(priceList.size() / 2) + priceList.get(priceList.size() / 2) - 1) / 2
+                    :  priceList.get(priceList.size() / 2);
     }
 
     private long getFlightDurationInMinutes(Ticket ticket) {

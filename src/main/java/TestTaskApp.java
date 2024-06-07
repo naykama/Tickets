@@ -18,6 +18,6 @@ public class TestTaskApp {
         }
         ticketService.saveAll(tickets);
         prettyPrinter.printMinTimesBetween(ticketService.getMinTimeBetween("VVO", "TLV"));
-        prettyPrinter.printAverageMinimumDiff(ticketService.getDiffAverageMediumPriceBetween("VVO", "TLV"));
+        prettyPrinter.printAverageMediumDiff(ticketService.getDiffAverageMediumPriceBetween("VVO", "TLV"));
     }
 }

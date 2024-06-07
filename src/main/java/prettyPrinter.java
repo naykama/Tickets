@@ -8,7 +8,7 @@ public class prettyPrinter {
         }
     }
 
-    public static void printAverageMinimumDiff(double averageMinimumDiff) {
+    public static void printAverageMediumDiff(double averageMinimumDiff) {
         System.out.printf("Difference between medium and average prices is %f\n", averageMinimumDiff);
     }
 }
